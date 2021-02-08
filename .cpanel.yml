@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/bymn5422/sisper/
+    - /bin/cp -R * $DEPLOYPATH
