@@ -96,11 +96,25 @@
     <nav class="navbar bg-nav" style="font-size:14px;">
         <div class="container">
             <a class="navbar-brand" href="#"><strong>Bymelys.id</strong> <span style="font-size:14px">Sistem Informasi</span></a>
-            <a href="#" style="text-decoration: none;" id="btn-menu"><i class="fa fa-bars"></i> Menu</a>
+            <span href="#" style="text-decoration: none; cursor: pointer;" id="btn-menu"><i class="fa fa-bars"></i> Menu</span>
         </div>
 
     </nav>
     <br>
+
+    <script>
+        function toUrl(url){
+            window.location.href = url;
+        }
+
+        $("#btn-menu").click(function(){
+            $("#modal-menu").modal('show');
+        });
+
+    </script>
+    <div class="container">
+        @yield('content')
+    </div>
 
     <div class="modal fade" tabindex="-1" role="dialog" id="modal-menu">
         <div class="modal-dialog" role="document">
@@ -139,7 +153,7 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="box-menu" id="verifikasi" onclick="toUrl('/form-customer')">
+                                <div class="box-menu" id="verifikasi" onclick="toUrl('/verifikasi')">
                                     <div class="menu-logo"><i class="fa fa-edit"></i></div>
                                     <div class="menu-name">Verifikasi Pembelian</div>
                                 </div>
@@ -155,16 +169,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <script>
-
-        function toUrl(url){
-            window.location.href = url;
-        }
-
-    </script>
-    <div class="container">
-        @yield('content')
     </div>
 </body>
 </html>

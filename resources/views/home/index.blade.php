@@ -9,9 +9,7 @@
 </div>
 <br/>
 <script>
-    $("#btn-menu").click(function(){
-        $("#modal-menu").modal('show');
-    });
+
 </script>
 @endsection
 

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 class UploadBillingController extends Controller
 {
     function index(){
+        return view("uploadbilling.generate");
     }
 
     function customerVerif(){

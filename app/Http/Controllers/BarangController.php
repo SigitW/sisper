@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class BarangController extends Controller
 {
-    function barang(){
+    function index(){
         return view("barang.searchBarang");
     }
 }
