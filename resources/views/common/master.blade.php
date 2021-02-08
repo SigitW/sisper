@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>eRapSis.</title>
+    <title>Bymelysid.store</title>
     <link rel="apple-touch-icon" href="{{asset('images/')}}/nav.png">
     <link rel="shortcut icon" href="{{asset('images/')}}/nav.png">
     <link rel="icon" href="{{asset('images/')}}/nav.png">
@@ -95,7 +95,7 @@
     <!-- As a link -->
     <nav class="navbar bg-nav" style="font-size:14px;">
         <div class="container">
-            <a class="navbar-brand" href="#"><strong>Bymelys.id</strong> <span style="font-size:14px">Sistem Informasi</span></a>
+            <a class="navbar-brand" href="/home"><strong>Bymelys.id</strong> <span style="font-size:14px">Sistem Informasi</span></a>
             <span href="#" style="text-decoration: none; cursor: pointer;" id="btn-menu"><i class="fa fa-bars"></i> Menu</span>
         </div>
 
@@ -112,8 +112,13 @@
         });
 
     </script>
+
     <div class="container">
-        @yield('content')
+        <hr>
+        <div class="detail-panel">
+            @yield('content')
+        </div>
+        <br/>
     </div>
 
     <div class="modal fade" tabindex="-1" role="dialog" id="modal-menu">

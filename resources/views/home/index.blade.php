@@ -1,13 +1,9 @@
 @extends('common.master')
 @section('content')
-<hr>
-<div class="detail-panel">
-    <div class="alert alert-success" style="text-align: center;">
-        Selamat Datang Pada System Informasi Stok Dan Keuangan ByMelys.id
-    </div>
-    <hr/>
+<div class="alert alert-success" style="text-align: center;">
+    Selamat Datang Pada System Informasi Stok Dan Keuangan ByMelys.id
 </div>
-<br/>
+<hr/>
 <script>
 
 </script>
