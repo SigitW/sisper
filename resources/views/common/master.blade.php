@@ -86,6 +86,16 @@
             width: 50%;
             float: left;
         }
+        .table{
+            font-size: 13px;
+            background-color:  #469dba;
+        }
+        .table tbody{
+            font-size: 12px;
+        }
+        .full{
+            width: 100%;
+        }
     </style>
     <script>
 
