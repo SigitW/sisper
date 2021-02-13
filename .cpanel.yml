@@ -2,7 +2,8 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/bymn5422/sisper/
+    - export PUBLICPATH=/home/bymn5422/public_html/
     - /bin/cp -R app $DEPLOYPATH
     - /bin/cp -R routes $DEPLOYPATH
     - /bin/cp -R resources $DEPLOYPATH
-
+    - /bin/cp -R public/images $PUBLICPATH

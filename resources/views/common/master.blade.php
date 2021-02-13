@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Bymelysid.store</title>
     <link rel="apple-touch-icon" href="{{asset('images/')}}/nav.png">
     <link rel="shortcut icon" href="{{asset('images/')}}/nav.png">
@@ -11,8 +12,10 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.23/datatables.min.css"/>
     <script src="{{asset('js/jquery.js')}}"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.23/datatables.min.js"></script>
 
     <style>
         .bg-nav{
@@ -86,7 +89,7 @@
             width: 50%;
             float: left;
         }
-        .table{
+        .table thead{
             font-size: 13px;
             background-color:  #469dba;
         }
@@ -98,7 +101,11 @@
         }
     </style>
     <script>
-
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
     </script>
 </head>
 <body>
@@ -108,20 +115,8 @@
             <a class="navbar-brand" href="/home"><strong>Bymelys.id</strong> <span style="font-size:14px">Sistem Informasi</span></a>
             <span href="#" style="text-decoration: none; cursor: pointer;" id="btn-menu"><i class="fa fa-bars"></i> Menu</span>
         </div>
-
     </nav>
     <br>
-
-    <script>
-        function toUrl(url){
-            window.location.href = url;
-        }
-
-        $("#btn-menu").click(function(){
-            $("#modal-menu").modal('show');
-        });
-
-    </script>
 
     <div class="container">
         <hr>
@@ -130,54 +125,54 @@
         </div>
         <br/>
     </div>
+</body>
 
-    <div class="modal fade" tabindex="-1" role="dialog" id="modal-menu">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Menu</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="modal-body-menu">
-                        <div class="row no-gutters">
-                            <div class="col-md-12">
-                                <div class="box-menu" onclick="toUrl('/dashboard')">
-                                    <div class="menu-logo"><i class="fa fa-chart-line"></i></div>
-                                    <div class="menu-name">Dashboard & Laporan</div>
-                                </div>
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-menu">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Menu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body-menu">
+                    <div class="row no-gutters">
+                        <div class="col-md-12">
+                            <div class="box-menu" onclick="toUrl('/dashboard')">
+                                <div class="menu-logo"><i class="fa fa-chart-line"></i></div>
+                                <div class="menu-name">Dashboard & Laporan</div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="box-menu" onclick="toUrl('/barang')">
-                                    <div class="menu-logo"><i class="fa fa-briefcase"></i></div>
-                                    <div class="menu-name">Barang</div>
-                                </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="box-menu" onclick="toUrl('/barang')">
+                                <div class="menu-logo"><i class="fa fa-briefcase"></i></div>
+                                <div class="menu-name">Barang</div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="box-menu" onclick="toUrl('/kas')">
-                                    <div class="menu-logo"><i class="fa fa-file"></i></div>
-                                    <div class="menu-name">Kas</div>
-                                </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="box-menu" onclick="toUrl('/kas')">
+                                <div class="menu-logo"><i class="fa fa-file"></i></div>
+                                <div class="menu-name">Kas</div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="box-menu" onclick="toUrl('/generate')">
-                                    <div class="menu-logo"><i class="fa fa-align-left"></i></div>
-                                    <div class="menu-name">Generate Form</div>
-                                </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="box-menu" onclick="toUrl('/generate')">
+                                <div class="menu-logo"><i class="fa fa-align-left"></i></div>
+                                <div class="menu-name">Generate Form</div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="box-menu" id="verifikasi" onclick="toUrl('/verifikasi')">
-                                    <div class="menu-logo"><i class="fa fa-edit"></i></div>
-                                    <div class="menu-name">Verifikasi Pembelian</div>
-                                </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="box-menu" id="verifikasi" onclick="toUrl('/verifikasi')">
+                                <div class="menu-logo"><i class="fa fa-edit"></i></div>
+                                <div class="menu-name">Verifikasi Pembelian</div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="box-menu" onclick="toUrl('/pengiriman')">
-                                    <div class="menu-logo"><i class="fa fa-truck"></i></div>
-                                    <div class="menu-name">Verifikasi Pengiriman</div>
-                                </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="box-menu" onclick="toUrl('/pengiriman')">
+                                <div class="menu-logo"><i class="fa fa-truck"></i></div>
+                                <div class="menu-name">Verifikasi Pengiriman</div>
                             </div>
                         </div>
                     </div>
@@ -185,6 +180,97 @@
             </div>
         </div>
     </div>
-</body>
+</div>
+
+<div class="modal fade" id="modal-loading" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12" style="text-align: center">
+                    <i class="fa fa-circle-notch fa-spin"></i> Loading . . .
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-menu">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Menu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body-menu">
+                    <div class="row no-gutters">
+                        <div class="col-md-12">
+                            <div class="box-menu" onclick="toUrl('/dashboard')">
+                                <div class="menu-logo"><i class="fa fa-chart-line"></i></div>
+                                <div class="menu-name">Dashboard & Laporan</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="box-menu" onclick="toUrl('/barang')">
+                                <div class="menu-logo"><i class="fa fa-briefcase"></i></div>
+                                <div class="menu-name">Barang</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="box-menu" onclick="toUrl('/kas')">
+                                <div class="menu-logo"><i class="fa fa-file"></i></div>
+                                <div class="menu-name">Kas</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="box-menu" onclick="toUrl('/generate')">
+                                <div class="menu-logo"><i class="fa fa-align-left"></i></div>
+                                <div class="menu-name">Generate Form</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="box-menu" id="verifikasi" onclick="toUrl('/verifikasi')">
+                                <div class="menu-logo"><i class="fa fa-edit"></i></div>
+                                <div class="menu-name">Verifikasi Pembelian</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="box-menu" onclick="toUrl('/pengiriman')">
+                                <div class="menu-logo"><i class="fa fa-truck"></i></div>
+                                <div class="menu-name">Verifikasi Pengiriman</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toUrl(url){
+        window.location.href = url;
+    }
+
+    $("#btn-menu").click(function(){
+        $("#modal-menu").modal('show');
+    });
+
+    function modalLoading(p){
+        console.log(p);
+        $("#modal-loading").modal(p);
+    }
+
+</script>
 </html>
 

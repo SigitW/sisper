@@ -32,3 +32,11 @@ Route::get('/kas', [KasController::class, 'index']);
 Route::get('/verifikasi', [VerifikasiController::class, 'index']);
 Route::get('/generate', [UploadBillingController::class, 'index']);
 Route::get('/pengiriman', [PengirimanController::class, 'index']);
+
+
+
+Route::post('/barang/create', [BarangController::class, 'create'])->name("barang.saveAdd");
+Route::post('/barang/search', [BarangController::class, 'search'])->name("barang.search");
+Route::post('/barang/edit', [BarangController::class, 'edit'])->name("barang.edit");
+Route::post('/barang/saveEdit', [BarangController::class, 'saveEdit'])->name("barang.saveEdit");
+
