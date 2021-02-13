@@ -7,3 +7,4 @@ deployment:
     - /bin/cp -R routes $DEPLOYPATH
     - /bin/cp -R resources $DEPLOYPATH
     - /bin/cp -R public/images $PUBLICPATH
+    - /bin/cp -R public/js $PUBLICPATH
