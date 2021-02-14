@@ -1,11 +1,3 @@
-$("#btn-filter").click(function(){
-    $("#panel-form-pencarian").show();
-});
-
-$("#btn-hide").click(function(){
-    $("#panel-form-pencarian").hide();
-});
-
 $("#btn-barang").click(function(){
     $('#table-barang').DataTable({
             destroy:true,
@@ -23,6 +15,7 @@ $("#btn-add-barang").click(function(){
        .prop("checked", "")
        .end();
 
+    selVendor("add", "vendor");
     $("#modal-add-barang").modal('show');
 });
 
@@ -80,7 +73,7 @@ function searchBarang(){
       success:function(data){
         var listBarang = [];
         $.each(data, function(i, item){
-            var data = [item.nama, item.nama_pembelian, item.margin, "", item.harga_default,
+            var data = [item.nama, item.nama_pembelian, item.margin + "%", item.nama_vendor, item.harga_default,
             "<button class=\"btn btn-sm btn-dark\" onclick=\"showEdit(\'"+item.id+"\')\"><i class=\"fa fa-edit\"></i></button>"
             ];
             listBarang.push(data);
@@ -96,6 +89,7 @@ function searchBarang(){
 
 function showEdit(id){
     $("#modal-edit-barang").modal('show');
+    selVendor("edit", "vendor");
 
     $("#modal-edit-barang")
     .find("input,textarea,select")
@@ -151,6 +145,21 @@ function saveEditBarang(){
             $("#modal-edit-barang").modal('hide');
             $("#search-nama-barang").val(namajual);
             searchBarang();
+        }
+    });
+}
+
+function selVendor(modul, namamenu){
+
+    $.ajax({
+        type:'POST',
+        url:urlSearchVendor,
+        success:function(data){
+            var str = ""
+            $.each(data, function(i, item){
+                str += '<option value="'+ item.id +'">'+ item.nama +'</option>';
+            });
+            $("#sel-"+modul+"-"+namamenu).html(str);
         }
     });
 }

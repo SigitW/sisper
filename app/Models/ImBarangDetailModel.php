@@ -16,7 +16,7 @@ class ImBarangDetailModel extends Model
         'qty',
         'harga_beli',
         'harga_jual',
-        'id_vendor',
+        'id_barang',
         'flag',
         'action',
         'created_who',

@@ -15,6 +15,7 @@ class ItSaldoModel extends Model
         'kode_rekening_id',
         'coa',
         'periode',
+        'posisi',
         'jumlah',
         'flag',
         'action',

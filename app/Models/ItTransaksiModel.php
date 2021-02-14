@@ -13,11 +13,13 @@ class ItTransaksiModel extends Model
 
     protected $fillable = [
         'kode_rekening_id',
+        'nama',
         'trans_id',
         'id_item',
         'id_vendor',
         'posisi',
         'jumlah',
+        'no_ref',
         'flag',
         'action',
         'created_who',
